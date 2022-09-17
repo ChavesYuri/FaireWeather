@@ -45,7 +45,7 @@ struct WeatherView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct WeatherView_Previews: PreviewProvider {
     static var previews: some View {
         WeatherView(city: "Toronto", temperature: "16", weatherDescription: "Cloudy", maximumTemperature: "23", minimumTemperature: "10")
             .preferredColorScheme(.dark)

@@ -6,13 +6,11 @@ enum ErrorResponse: String, Error {
     case decode
 }
 
-typealias DataTaskResult = (Data?, URLResponse?, Error?) -> Void
-
-protocol URLSessionProtocol {
-    func dataTaskWithURL(_ url: URL, completionHandler: @escaping DataTaskResult) -> URLSessionDataTask
+protocol HTTPClientProtocol {
+    func get<T: Decodable>(url: URL, completion: @escaping (Result<T, Error>) -> Void)
 }
 
-final class HTTPClient {
+final class HTTPClient: HTTPClientProtocol {
     let session: URLSessionProtocol
 
     init(session: URLSessionProtocol) {
@@ -20,8 +18,7 @@ final class HTTPClient {
     }
 
     func get<T: Decodable>(url: URL, completion: @escaping (Result<T, Error>) -> Void) {
-
-        session.dataTaskWithURL(url) { (data, response, error) in
+        session.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 return completion(.failure(error))
             }

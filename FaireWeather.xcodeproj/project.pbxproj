@@ -16,6 +16,14 @@
 		99BCC47128D51E4D00C447A8 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCC47028D51E4D00C447A8 /* HTTPClient.swift */; };
 		99BCC47828D6180A00C447A8 /* DummyCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCC47728D6180A00C447A8 /* DummyCodable.swift */; };
 		99BCC47E28D62A2100C447A8 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCC47D28D62A2100C447A8 /* MockURLProtocol.swift */; };
+		99BCC48228D6376B00C447A8 /* RemoteLoadWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCC48128D6376B00C447A8 /* RemoteLoadWeather.swift */; };
+		99BCC48528D6379B00C447A8 /* LoadWeatherUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCC48428D6379B00C447A8 /* LoadWeatherUseCase.swift */; };
+		99BCC48728D6385E00C447A8 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCC48628D6385E00C447A8 /* Weather.swift */; };
+		99BCC48928D63D1200C447A8 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCC48828D63D1200C447A8 /* URLSessionProtocol.swift */; };
+		99BCC48C28D6452200C447A8 /* RemoteLoadWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCC48B28D6452200C447A8 /* RemoteLoadWeatherTests.swift */; };
+		99BCC48E28D6457600C447A8 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCC48D28D6457600C447A8 /* HTTPClientSpy.swift */; };
+		99BCC49028D64ABC00C447A8 /* RemoteWeatherFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCC48F28D64ABC00C447A8 /* RemoteWeatherFixture.swift */; };
+		99BCC49228D65E7F00C447A8 /* ConsolidatedWeatherFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCC49128D65E7F00C447A8 /* ConsolidatedWeatherFixture.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +48,15 @@
 		99BCC47028D51E4D00C447A8 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		99BCC47728D6180A00C447A8 /* DummyCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyCodable.swift; sourceTree = "<group>"; };
 		99BCC47D28D62A2100C447A8 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		99BCC48128D6376B00C447A8 /* RemoteLoadWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoadWeather.swift; sourceTree = "<group>"; };
+		99BCC48428D6379B00C447A8 /* LoadWeatherUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadWeatherUseCase.swift; sourceTree = "<group>"; };
+		99BCC48628D6385E00C447A8 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		99BCC48828D63D1200C447A8 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
+		99BCC48A28D643E400C447A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		99BCC48B28D6452200C447A8 /* RemoteLoadWeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoadWeatherTests.swift; sourceTree = "<group>"; };
+		99BCC48D28D6457600C447A8 /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
+		99BCC48F28D64ABC00C447A8 /* RemoteWeatherFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteWeatherFixture.swift; sourceTree = "<group>"; };
+		99BCC49128D65E7F00C447A8 /* ConsolidatedWeatherFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolidatedWeatherFixture.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,10 +98,10 @@
 		99BCC44128D5170600C447A8 /* FaireWeather */ = {
 			isa = PBXGroup;
 			children = (
+				99BCC48A28D643E400C447A8 /* Info.plist */,
+				99BCC47F28D6372700C447A8 /* Weather */,
 				99BCC46F28D51E2600C447A8 /* NetworkService */,
-				99BCC46C28D51C3700C447A8 /* RemoteLoadWeather */,
 				99BCC44228D5170600C447A8 /* FaireWeatherApp.swift */,
-				99BCC44428D5170600C447A8 /* WeatherView.swift */,
 				99BCC44628D5170900C447A8 /* Assets.xcassets */,
 				99BCC44828D5170900C447A8 /* Preview Content */,
 			);
@@ -102,24 +119,18 @@
 		99BCC45228D5170A00C447A8 /* FaireWeatherTests */ = {
 			isa = PBXGroup;
 			children = (
-				99BCC47628D617FE00C447A8 /* Doubles */,
 				99BCC45328D5170A00C447A8 /* HTTPClientTests.swift */,
+				99BCC47628D617FE00C447A8 /* Doubles */,
+				99BCC49328D65EA300C447A8 /* Infrastructure */,
 			);
 			path = FaireWeatherTests;
-			sourceTree = "<group>";
-		};
-		99BCC46C28D51C3700C447A8 /* RemoteLoadWeather */ = {
-			isa = PBXGroup;
-			children = (
-				99BCC46D28D51DAE00C447A8 /* WeatherModel.swift */,
-			);
-			path = RemoteLoadWeather;
 			sourceTree = "<group>";
 		};
 		99BCC46F28D51E2600C447A8 /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
 				99BCC47028D51E4D00C447A8 /* HTTPClient.swift */,
+				99BCC48828D63D1200C447A8 /* URLSessionProtocol.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -129,8 +140,47 @@
 			children = (
 				99BCC47728D6180A00C447A8 /* DummyCodable.swift */,
 				99BCC47D28D62A2100C447A8 /* MockURLProtocol.swift */,
+				99BCC48D28D6457600C447A8 /* HTTPClientSpy.swift */,
+				99BCC48F28D64ABC00C447A8 /* RemoteWeatherFixture.swift */,
+				99BCC49128D65E7F00C447A8 /* ConsolidatedWeatherFixture.swift */,
 			);
 			path = Doubles;
+			sourceTree = "<group>";
+		};
+		99BCC47F28D6372700C447A8 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				99BCC48328D6378200C447A8 /* Domain */,
+				99BCC48028D6373900C447A8 /* Infrastructure */,
+				99BCC44428D5170600C447A8 /* WeatherView.swift */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		99BCC48028D6373900C447A8 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				99BCC46D28D51DAE00C447A8 /* WeatherModel.swift */,
+				99BCC48128D6376B00C447A8 /* RemoteLoadWeather.swift */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		99BCC48328D6378200C447A8 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				99BCC48428D6379B00C447A8 /* LoadWeatherUseCase.swift */,
+				99BCC48628D6385E00C447A8 /* Weather.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		99BCC49328D65EA300C447A8 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				99BCC48B28D6452200C447A8 /* RemoteLoadWeatherTests.swift */,
+			);
+			path = Infrastructure;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,7 +286,11 @@
 				99BCC44528D5170600C447A8 /* WeatherView.swift in Sources */,
 				99BCC46E28D51DAE00C447A8 /* WeatherModel.swift in Sources */,
 				99BCC47128D51E4D00C447A8 /* HTTPClient.swift in Sources */,
+				99BCC48228D6376B00C447A8 /* RemoteLoadWeather.swift in Sources */,
+				99BCC48928D63D1200C447A8 /* URLSessionProtocol.swift in Sources */,
+				99BCC48528D6379B00C447A8 /* LoadWeatherUseCase.swift in Sources */,
 				99BCC44328D5170600C447A8 /* FaireWeatherApp.swift in Sources */,
+				99BCC48728D6385E00C447A8 /* Weather.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,9 +298,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99BCC49028D64ABC00C447A8 /* RemoteWeatherFixture.swift in Sources */,
 				99BCC47E28D62A2100C447A8 /* MockURLProtocol.swift in Sources */,
 				99BCC45428D5170A00C447A8 /* HTTPClientTests.swift in Sources */,
+				99BCC49228D65E7F00C447A8 /* ConsolidatedWeatherFixture.swift in Sources */,
+				99BCC48C28D6452200C447A8 /* RemoteLoadWeatherTests.swift in Sources */,
 				99BCC47828D6180A00C447A8 /* DummyCodable.swift in Sources */,
+				99BCC48E28D6457600C447A8 /* HTTPClientSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +444,7 @@
 				DEVELOPMENT_TEAM = LJC5TM6ZBQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FaireWeather/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -415,6 +474,7 @@
 				DEVELOPMENT_TEAM = LJC5TM6ZBQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FaireWeather/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -42,7 +42,8 @@ final class RemoteLoadWeather: LoadWeatherUseCase {
                             temperature: "\(firstItem.theTemp.rounded())°",
                             weatherState: firstItem.weatherStateName,
                             minimumTemperature: "\(firstItem.minTemp.rounded())",
-                            maximumTemperature: "\(firstItem.maxTemp.rounded())"
+                            maximumTemperature: "\(firstItem.maxTemp.rounded())",
+                            weatherStateAbbr: firstItem.weatherStateAbbr
         )
     }
 }

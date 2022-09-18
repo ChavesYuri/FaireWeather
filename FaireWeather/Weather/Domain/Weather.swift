@@ -5,5 +5,5 @@ struct WeatherModel: Equatable {
     let weatherState: String
     let minimumTemperature: String
     let maximumTemperature: String
-    let weatherStateAbbr: String
+    let imageStringUrl: String
 }

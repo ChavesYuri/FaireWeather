@@ -15,4 +15,13 @@ extension Bundle {
         }
         return stringUrl
     }
+
+    var apiImageUrl: String {
+        guard
+            let stringUrl = object(forInfoDictionaryKey: "API_IMAGE_URL") as? String
+        else {
+            fatalError("INVALID API IMAGE URL")
+        }
+        return stringUrl
+    }
 }

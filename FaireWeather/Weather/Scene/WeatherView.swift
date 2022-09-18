@@ -12,10 +12,12 @@ struct WeatherView: View {
             case .loading:
                 ProgressView()
                     .tint(.red)
-            case .failedWithError(let error):
-                Text(error.localizedDescription)
+            case .failed:
+                ErrorView(onTryAgain: {
+                    viewModel.loadWeather()
+                })
             case .loadedWeather(let weather):
-                WeatherHeaderView(weather: weather)
+                WeatherDetailsView(weather: weather)
             }
         }
     }
@@ -29,3 +31,4 @@ struct WeatherView_Previews: PreviewProvider {
         Composer.makeWeatherView()
     }
 }
+

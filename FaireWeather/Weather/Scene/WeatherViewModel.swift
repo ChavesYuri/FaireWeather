@@ -4,7 +4,7 @@ final class WeatherViewModel: ObservableObject {
     enum State {
         case idle
         case loading
-        case failedWithError(_ error: Error)
+        case failed
         case loadedWeather(_ weather: WeatherModel)
     }
 
@@ -23,8 +23,8 @@ final class WeatherViewModel: ObservableObject {
             switch result {
             case .success(let weather):
                 self?.changeState(newState: .loadedWeather(weather))
-            case .failure(let error):
-                self?.changeState(newState: .failedWithError(error))
+            case .failure:
+                self?.changeState(newState: .failed)
             }
         }
     }

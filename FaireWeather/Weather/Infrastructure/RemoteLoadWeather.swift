@@ -35,12 +35,13 @@ final class RemoteLoadWeather: LoadWeatherUseCase {
             throw ConversionError.emptyData
         }
 
+        let imageStringUrl = "\(Bundle.main.apiImageUrl + firstItem.weatherStateAbbr).png"
         return WeatherModel(city: remoteModel.title,
                             temperature: "\(Int(firstItem.theTemp.rounded()))°",
                             weatherState: firstItem.weatherStateName,
                             minimumTemperature: "\(Int(firstItem.minTemp.rounded()))°",
                             maximumTemperature: "\(Int(firstItem.maxTemp.rounded()))°",
-                            weatherStateAbbr: firstItem.weatherStateAbbr
+                            imageStringUrl: imageStringUrl
         )
     }
 }

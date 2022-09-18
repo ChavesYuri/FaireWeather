@@ -14,11 +14,12 @@ final class RemoteLoadWeather: LoadWeatherUseCase {
     func execute(completion: @escaping (LoadWeatherUseCase.Result) -> Void) {
         let request: WeatherRequest = .init()
 
-        remoteClient.get(request: request) { (result: Swift.Result<RemoteWeatherModel, Error>) in
+        remoteClient.get(request: request) { [weak self] (result: Swift.Result<RemoteWeatherModel, Error>) in
+            guard let self = self else { return }
             switch result {
             case .success(let remoteModel):
                 do {
-                    completion(.success(try RemoteLoadWeather.map(remoteModel)))
+                    completion(.success(try self.map(remoteModel)))
                 } catch {
                     completion(.failure(error))
                 }
@@ -28,7 +29,7 @@ final class RemoteLoadWeather: LoadWeatherUseCase {
         }
     }
 
-    private static func map(
+    private func map(
         _ remoteModel: RemoteWeatherModel
     ) throws -> WeatherModel {
         guard let firstItem = remoteModel.consolidatedWeather.first else {

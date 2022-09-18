@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_URL</key>
+	<string>https://cdn.faire.com</string>
+	<key>API_IMAGE_URL</key>
+	<string>https://cdn.faire.com/static/mobile-take-home/icons/</string>
+</dict>
+</plist>

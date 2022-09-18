@@ -93,6 +93,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		99324FF828D78E5700594702 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				99BCC49B28D66DDA00C447A8 /* ViewModelTests.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		99324FF928D78E5E00594702 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				99BCC49328D65EA300C447A8 /* Infrastructure */,
+				99BCC47628D617FE00C447A8 /* Doubles */,
+				99324FF828D78E5700594702 /* Scene */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
 		99BCC43628D5170600C447A8 = {
 			isa = PBXGroup;
 			children = (
@@ -136,10 +154,8 @@
 		99BCC45228D5170A00C447A8 /* FaireWeatherTests */ = {
 			isa = PBXGroup;
 			children = (
+				99324FF928D78E5E00594702 /* Weather */,
 				99BCC4A928D775D000C447A8 /* Network */,
-				99BCC47628D617FE00C447A8 /* Doubles */,
-				99BCC49328D65EA300C447A8 /* Infrastructure */,
-				99BCC49B28D66DDA00C447A8 /* ViewModelTests.swift */,
 			);
 			path = FaireWeatherTests;
 			sourceTree = "<group>";

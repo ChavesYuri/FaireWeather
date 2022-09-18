@@ -20,7 +20,13 @@ final class ViewModelTests: XCTestCase {
         sut.loadWeather()
 
         XCTAssertEqual(useCase.executeCount, 1)
-        XCTAssertEqual(sut.state, .loadedWeather(weatherModel))
+
+        let exp = expectation(description: "wait for main thread")
+        DispatchQueue.main.async {
+            XCTAssertEqual(sut.state, .loadedWeather(weatherModel))
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
     }
 
     func test_load_shouldReturnError() {
@@ -32,7 +38,13 @@ final class ViewModelTests: XCTestCase {
         sut.loadWeather()
 
         XCTAssertEqual(useCase.executeCount, 1)
-        XCTAssertEqual(sut.state, .failedWithError(error))
+
+        let exp = expectation(description: "wait for main thread")
+        DispatchQueue.main.async {
+            XCTAssertEqual(sut.state, .failedWithError(error))
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
     }
 
 

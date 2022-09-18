@@ -113,6 +113,16 @@
 			path = Weather;
 			sourceTree = "<group>";
 		};
+		99324FFC28D7CDDE00594702 /* Doubles */ = {
+			isa = PBXGroup;
+			children = (
+				99BCC47D28D62A2100C447A8 /* MockURLProtocol.swift */,
+				99BCC47728D6180A00C447A8 /* DummyCodable.swift */,
+				99BCC4AA28D775F100C447A8 /* NetworkRequestFixture.swift */,
+			);
+			path = Doubles;
+			sourceTree = "<group>";
+		};
 		99BCC43628D5170600C447A8 = {
 			isa = PBXGroup;
 			children = (
@@ -175,8 +185,6 @@
 		99BCC47628D617FE00C447A8 /* Doubles */ = {
 			isa = PBXGroup;
 			children = (
-				99BCC47728D6180A00C447A8 /* DummyCodable.swift */,
-				99BCC47D28D62A2100C447A8 /* MockURLProtocol.swift */,
 				99BCC48D28D6457600C447A8 /* HTTPClientSpy.swift */,
 				99BCC48F28D64ABC00C447A8 /* RemoteWeatherFixture.swift */,
 				99BCC49128D65E7F00C447A8 /* ConsolidatedWeatherFixture.swift */,
@@ -244,8 +252,8 @@
 		99BCC4A928D775D000C447A8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				99324FFC28D7CDDE00594702 /* Doubles */,
 				99BCC45328D5170A00C447A8 /* HTTPClientTests.swift */,
-				99BCC4AA28D775F100C447A8 /* NetworkRequestFixture.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";

@@ -38,12 +38,18 @@ struct WeatherHeaderView: View {
                 HStack(spacing: 15) {
                     HStack(spacing: 1) {
                         Text("L:")
+                            .font(.title)
+
                         Text(weather.minimumTemperature)
+                            .font(.title)
                     }
 
                     HStack(spacing: 1) {
                         Text("H:")
+                            .font(.title)
+
                         Text(weather.maximumTemperature)
+                            .font(.title)
                     }
                 }
 

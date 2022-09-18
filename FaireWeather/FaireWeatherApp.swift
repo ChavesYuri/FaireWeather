@@ -19,10 +19,7 @@ struct FaireWeatherApp: App {
 final class Composer {
     static func makeWeatherView() -> WeatherView {
         let httpClient = HTTPClient(session: URLSession.shared)
-        let stringUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as! String
-        let url = URL(string: stringUrl)!
-
-        let remoteWeatherUseCase = RemoteLoadWeather(remoteClient: httpClient, url: url)
+        let remoteWeatherUseCase = RemoteLoadWeather(remoteClient: httpClient)
         let weatherViewModel = WeatherViewModel(loadWeatherUseCase: remoteWeatherUseCase)
 
         return WeatherView(viewModel: weatherViewModel)

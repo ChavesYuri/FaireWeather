@@ -6,18 +6,15 @@ enum ConversionError: Error {
 
 final class RemoteLoadWeather: LoadWeatherUseCase {
     let remoteClient: HTTPClientProtocol
-    let url: URL
 
-    init(
-        remoteClient: HTTPClientProtocol,
-        url: URL
-    ) {
+    init(remoteClient: HTTPClientProtocol) {
         self.remoteClient = remoteClient
-        self.url = url
     }
     
     func execute(completion: @escaping (LoadWeatherUseCase.Result) -> Void) {
-        remoteClient.get(url: url) { (result: Swift.Result<RemoteWeatherModel, Error>) in
+        let request: WeatherRequest = .init()
+
+        remoteClient.get(request: request) { (result: Swift.Result<RemoteWeatherModel, Error>) in
             switch result {
             case .success(let remoteModel):
                 do {
@@ -39,10 +36,10 @@ final class RemoteLoadWeather: LoadWeatherUseCase {
         }
 
         return WeatherModel(city: remoteModel.title,
-                            temperature: "\(firstItem.theTemp.rounded())°",
+                            temperature: "\(Int(firstItem.theTemp.rounded()))°",
                             weatherState: firstItem.weatherStateName,
-                            minimumTemperature: "\(firstItem.minTemp.rounded())",
-                            maximumTemperature: "\(firstItem.maxTemp.rounded())",
+                            minimumTemperature: "\(Int(firstItem.minTemp.rounded()))°",
+                            maximumTemperature: "\(Int(firstItem.maxTemp.rounded()))°",
                             weatherStateAbbr: firstItem.weatherStateAbbr
         )
     }

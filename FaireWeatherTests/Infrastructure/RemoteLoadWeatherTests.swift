@@ -3,15 +3,15 @@ import Foundation
 import XCTest
 final class RemoteLoadWeatherTests: XCTestCase {
 
-    func test_init_shouldHaveNoRequest() throws {
-        let (_, client) = makeSUT(url: try baseURLTest())
+    func test_init_shouldHaveNoRequest() {
+        let (_, client) = makeSUT()
 
         XCTAssertNil(client.resultToReturn)
-        XCTAssertNil(client.lastURL)
+        XCTAssertNil(client.lastRequest)
     }
 
-    func test_execute_whenCompletesWithSuccess_shouldMapToWeather() throws {
-        let (sut, client) = makeSUT(url: try baseURLTest())
+    func test_execute_whenCompletesWithSuccess_shouldMapToWeather() {
+        let (sut, client) = makeSUT()
 
         client.resultToReturn = makeSuccessWeatherResult(with:
                 .fixture(
@@ -35,8 +35,8 @@ final class RemoteLoadWeatherTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
-    func test_execute_whenCompletesWithSuccessWithEmptyWeathers_shouldMapToError() throws {
-        let (sut, client) = makeSUT(url: try baseURLTest())
+    func test_execute_whenCompletesWithSuccessWithEmptyWeathers_shouldMapToError() {
+        let (sut, client) = makeSUT()
 
         client.resultToReturn = makeSuccessWeatherResult(with: .fixture())
 
@@ -54,8 +54,8 @@ final class RemoteLoadWeatherTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
-    func test_execute_whenCompletesWithError_shouldReturnError() throws {
-        let (sut, client) = makeSUT(url: try baseURLTest())
+    func test_execute_whenCompletesWithError_shouldReturnError() {
+        let (sut, client) = makeSUT()
 
         let error = anyNSError()
         client.resultToReturn = makeFailureWeatherResult(with: error)
@@ -76,15 +76,11 @@ final class RemoteLoadWeatherTests: XCTestCase {
     }
 
     // MARK: - Helpers
-    private func makeSUT(url: URL) -> (sut: RemoteLoadWeather, client: HTTPClientSpy) {
+    private func makeSUT() -> (sut: RemoteLoadWeather, client: HTTPClientSpy) {
         let httpClient = HTTPClientSpy()
-        let sut = RemoteLoadWeather(remoteClient: httpClient, url: url)
+        let sut = RemoteLoadWeather(remoteClient: httpClient)
 
         return (sut, httpClient)
-    }
-
-    private func baseURLTest() throws -> URL  {
-        return try XCTUnwrap(URL(string: "https//:www.fairetest.com.br"))
     }
 
     private func makeSuccessWeatherResult(with remoteWeather: RemoteWeatherModel) -> Result<RemoteWeatherModel, Error> {

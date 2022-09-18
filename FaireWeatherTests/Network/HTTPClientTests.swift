@@ -11,15 +11,17 @@ import XCTest
 final class HTTPClientTests: XCTestCase {
 
     func test_request_shouldReturnSuccess() throws {
-        let url = URL(string: "https://www.google.com")!
+        let fakeURL = URL(string: "www.google.com/path")!
+        let baseRequest: Request = .fixture()
         let jsonData = try XCTUnwrap("{\"dummyProperty\":\"property\"}".data(using: .utf8))
-        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
-        MockURLProtocol.mockURLs = [url: (nil, jsonData, response)]
+
+        let response = HTTPURLResponse(url: fakeURL, statusCode: 200, httpVersion: nil, headerFields: nil)
+        MockURLProtocol.mockURLs = [fakeURL: (nil, jsonData, response)]
 
         let (sut, _) = makeSUT()
 
         let exp = expectation(description: "wait for network completion")
-        sut.get(url: url) { (result: Swift.Result<DummyCodable, Error>) in
+        sut.get(request: baseRequest) { (result: Swift.Result<DummyCodable, Error>) in
             switch result {
             case .success(let responseCodable):
                 XCTAssertEqual(responseCodable.dummyProperty, "property")
@@ -29,19 +31,20 @@ final class HTTPClientTests: XCTestCase {
             exp.fulfill()
         }
 
-        wait(for: [exp], timeout: 1.0)
+        wait(for: [exp], timeout: 4.0)
     }
 
     func test_request_shouldReturnDecodeError() throws {
-        let url = URL(string: "https://www.google.com")!
+        let fakeURL = URL(string: "www.google.com/path")!
+        let baseRequest: Request = .fixture()
         let jsonData = try XCTUnwrap("{\"dummyPropert\":\"property\"}".data(using: .utf8))
-        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
-        MockURLProtocol.mockURLs = [url: (nil, jsonData, response)]
+        let response = HTTPURLResponse(url: fakeURL, statusCode: 200, httpVersion: nil, headerFields: nil)
+        MockURLProtocol.mockURLs = [fakeURL: (nil, jsonData, response)]
 
         let (sut, _) = makeSUT()
 
         let exp = expectation(description: "wait for network completion")
-        sut.get(url: url) { (result: Swift.Result<DummyCodable, Error>) in
+        sut.get(request: baseRequest) { (result: Swift.Result<DummyCodable, Error>) in
             switch result {
             case .failure(let error as ErrorResponse):
                 XCTAssertEqual(error, .decode)
@@ -55,15 +58,16 @@ final class HTTPClientTests: XCTestCase {
     }
 
     func test_request_shouldReturnInvalidResponse() throws {
-        let url = URL(string: "https://www.google.com")!
+        let fakeURL = URL(string: "www.google.com/path")!
+        let baseRequest: Request = .fixture()
         let jsonData = try XCTUnwrap("{\"dummyProperty\":\"property\"}".data(using: .utf8))
-        let response = HTTPURLResponse(url: url, statusCode: 400, httpVersion: nil, headerFields: nil)
-        MockURLProtocol.mockURLs = [url: (nil, jsonData, response)]
+        let response = HTTPURLResponse(url: fakeURL, statusCode: 400, httpVersion: nil, headerFields: nil)
+        MockURLProtocol.mockURLs = [fakeURL: (nil, jsonData, response)]
 
         let (sut, _) = makeSUT()
 
         let exp = expectation(description: "wait for network completion")
-        sut.get(url: url) { (result: Swift.Result<DummyCodable, Error>) in
+        sut.get(request: baseRequest) { (result: Swift.Result<DummyCodable, Error>) in
             switch result {
             case .failure(let error as ErrorResponse):
                 XCTAssertEqual(error, .invalidResponse)
@@ -76,15 +80,16 @@ final class HTTPClientTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
-    func test_request_shouldReturnInvalidData() throws {
-        let url = URL(string: "https://www.google.com")!
-        let response = HTTPURLResponse(url: url, statusCode: 400, httpVersion: nil, headerFields: nil)
-        MockURLProtocol.mockURLs = [url: (nil, nil, response)]
+    func test_request_shouldReturnInvalidData() {
+        let fakeURL = URL(string: "www.google.com/path")!
+        let baseRequest: Request = .fixture()
+        let response = HTTPURLResponse(url: fakeURL, statusCode: 400, httpVersion: nil, headerFields: nil)
+        MockURLProtocol.mockURLs = [fakeURL: (nil, nil, response)]
 
         let (sut, _) = makeSUT()
 
         let exp = expectation(description: "wait for network completion")
-        sut.get(url: url) { (result: Swift.Result<DummyCodable, Error>) in
+        sut.get(request: baseRequest) { (result: Swift.Result<DummyCodable, Error>) in
             switch result {
             case .failure(let error as ErrorResponse):
                 XCTAssertEqual(error, .invalidResponse)

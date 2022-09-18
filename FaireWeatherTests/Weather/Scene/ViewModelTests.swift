@@ -41,7 +41,7 @@ final class ViewModelTests: XCTestCase {
 
         let exp = expectation(description: "wait for main thread")
         DispatchQueue.main.async {
-            XCTAssertEqual(sut.state, .failedWithError(error))
+            XCTAssertEqual(sut.state, .failed)
             exp.fulfill()
         }
         wait(for: [exp], timeout: 1.0)
@@ -69,8 +69,8 @@ extension WeatherViewModel.State: Equatable {
             return true
         case (.loading, .loading):
             return true
-        case (.failedWithError(let lhsError), .failedWithError(let rhsError)):
-            return lhsError.localizedDescription == rhsError.localizedDescription
+        case (.failed, .failed):
+            return true
         case (.loadedWeather(let lhsWeather), .loadedWeather(let rhsWeather)):
             return lhsWeather == rhsWeather
         default:
@@ -86,7 +86,7 @@ extension WeatherModel {
         weatherState: String = "",
         minimumTemperature: String = "",
         maximumTemperature: String = "",
-        weatherStateAbbr: String = ""
+        imageStringUrl: String = ""
     ) -> Self {
         .init(
             city: city,
@@ -94,7 +94,7 @@ extension WeatherModel {
             weatherState: weatherState,
             minimumTemperature: minimumTemperature,
             maximumTemperature: maximumTemperature,
-            weatherStateAbbr: weatherStateAbbr
+            imageStringUrl: imageStringUrl
         )
     }
 }
